@@ -1,6 +1,5 @@
 (ns incise.deployer.impl.git-branch-test
-  (:require [stefon.util :refer [temp-dir]]
-            [incise.utils :refer [delete-recursively]]
+  (:require [incise.utils :refer [temp-dir delete-recursively]]
             [clojure.test :refer :all]
             (clojure.java [io :refer [file]]
                           [shell :refer [with-sh-dir sh]])
