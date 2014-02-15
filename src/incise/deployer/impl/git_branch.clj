@@ -1,5 +1,5 @@
 (ns incise.deployer.impl.git-branch
-  (:require [incise.once :refer [once]]
+  (:require [incise.once.core :refer [once]]
             [incise.utils :refer [remove-prefix-from-path]]
             [incise.deployer.core :refer [register]]
             [taoensso.timbre :refer [debug info warn]]
