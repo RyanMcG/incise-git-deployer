@@ -2,7 +2,7 @@
   (:require [incise.once.core :refer [once]]
             [incise.utils :refer [remove-prefix-from-path]]
             [incise.deployer.core :refer [register]]
-            [taoensso.timbre :refer [debug info warn]]
+            [taoensso.timbre :refer [debug report warn]]
             [clojure.java.io :refer [file]]
             [clojure.string :as s]
             (clj-jgit [porcelain :refer :all :exclude [git-push with-repo]]
@@ -87,9 +87,9 @@
       (throw (RuntimeException. err)))))
 
 (defn log-files [files]
-  (info "Adding the following files:")
+  (report "Adding the following files:")
   (doseq [afile files]
-    (info " " (.getPath afile)))
+    (report " " (.getPath afile)))
   files)
 
 (defn add-file [afile]
@@ -142,10 +142,10 @@
            (dorun))
       (when commit
         (let [commit-msg (str "Built from " source-commit-hash \.)]
-          (info "Committing with message:" commit-msg)
+          (report "Committing with message:" commit-msg)
           (git-commit *repo* commit-msg))
         (when push
-          (info "Pushing to" (str remote \/ branch))
+          (report "Pushing to" (str remote \/ branch))
           (git-push remote branch)
           (force-checkout start-branch)
           (when stash-ref (unstash stash-ref)))))))
